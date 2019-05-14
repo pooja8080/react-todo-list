@@ -3,7 +3,7 @@ import uuid from 'uuid';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ToDoInput from './components/ToDoInput';
 import ToDoList from './components/ToDoList';
-
+//comments to check the githib setup
 class App extends Component{
   render(){
   return (
