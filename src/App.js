@@ -8,7 +8,7 @@ import ToDoList from './components/ToDoList';
 class App extends Component{
   constructor(props){
     super(props);
-    state={
+    this.state={
       items:[{id:1,title: 'wake up'},
       {id:2,title: 'make breakfast'}],
       id: uuid(),
