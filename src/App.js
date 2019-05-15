@@ -9,18 +9,31 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state={
-      items:[{id:1,title: 'wake up'},
-      {id:2,title: 'make breakfast'}],
+      items:[],
       id: uuid(),
       item: '',
       editItem: false
     }
   }
   handleChange = (e) => {
-    console.log('handle change');
+    this.setState({
+      item: e.target.value
+    })
   }
   handleSubmit = (e) => {
-    console.log('handle submit');
+    e.preventDefault();
+    const newItem={
+      id: this.state.id,
+      title: this.state.item
+    }
+    const updatedItems=[...this.state.items, newItem]
+  this.setState({
+    items: updatedItems,
+    item : '',
+    id: uuid(),
+    editItem:false
+  },() =>  console.log(this.state)
+  );
   }
   clearList = () =>{
     console.log('clearlist');
@@ -46,8 +59,8 @@ class App extends Component{
         <ToDoList
         items={this.state.items} 
         clearList={this.clearList}
-        handleDelete={this.hanldeDelete}
-        hanldeEdit={this.hanldeEdit}
+        handleDelete={this.handleDelete}
+        hanldeEdit={this.handleEdit}
         />
         </div>
       </div>
