@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import ToDoInput from './components/ToDoInput';
 import ToDoList from './components/ToDoList';
 //comments to check the githib setup
-//blahh
 class App extends Component{
   constructor(props){
     super(props);
@@ -32,18 +31,29 @@ class App extends Component{
     item : '',
     id: uuid(),
     editItem:false
-  },() =>  console.log(this.state)
-  );
+  });
   }
-  clearList = () =>{
-    console.log('clearlist');
-  }
-  hanldeDelete = (id) =>{
-    console.log(`handle delete ${id}`);
-  }
-  hanldeEdit = (id) =>{
-    console.log(`handle edit ${id}`);
-  }
+  clearList = () => {
+    this.setState({
+      items: []
+    });
+  };
+  handleDelete = id => {
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+    this.setState({
+      items: filteredItems
+    });
+  };
+  handleEdit = id => {
+    const filteredItems = this.state.items.filter(item => item.id !== id);
+    const selectedItem = this.state.items.find(item => item.id === id);
+    this.setState({
+      items: filteredItems,
+      item: selectedItem.title,
+      id: id,
+      editItem: true
+    });
+  };
 
   render(){
   return (
@@ -60,7 +70,7 @@ class App extends Component{
         items={this.state.items} 
         clearList={this.clearList}
         handleDelete={this.handleDelete}
-        hanldeEdit={this.handleEdit}
+        handleEdit={this.handleEdit}
         />
         </div>
       </div>
